@@ -1,0 +1,163 @@
+{
+    "packageId": "24ed0bf69df318",
+    "name": "",
+    "description": "",
+    "buttons": [
+        {
+            "buttonId": "221ad27205b4b4",
+            "name": "set bin code",
+            "description": "bin code",
+            "type": "action",
+            "questions": [
+                {
+                    "question": "set new bin code",
+                    "type": "keypad",
+                    "values": {
+                        "keys": [
+                            1,
+                            2,
+                            3,
+                            4,
+                            5,
+                            6,
+                            7,
+                            8,
+                            9,
+                            0
+                        ],
+                        "delete": true,
+                        "max": 5
+                    },
+                    "validators": [],
+                    "compulsory": true,
+                    "questionId": "204b52b69e8da2",
+                    "number": 1
+                }
+            ],
+            "navigation": {
+                "id": "204b52b69e8da2",
+                "type": "node",
+                "parent": null,
+                "children": [
+                    {
+                        "id": "1a3a45333e7c33",
+                        "type": "node",
+                        "parent": "204b52b69e8da2",
+                        "children": [
+                            {
+                                "id": "7b134e9db6174c",
+                                "type": "node",
+                                "parent": "1a3a45333e7c33",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            "webhooks": [
+                {
+                    "name": "bin code",
+                    "type": "log",
+                    "url": "https://[buttonkit]/api/v1/datastore/log",
+                    "method": "POST",
+                    "contentType": "json",
+                    "parameters": {
+                        "dynamic": {
+                            "presser": [
+                                {
+                                    "id": "1a3a45333e7c33_presser",
+                                    "type": "presser"
+                                }
+                            ],
+                            "pressed": [
+                                {
+                                    "id": "1a3a45333e7c33_pressed",
+                                    "type": "pressed"
+                                }
+                            ]
+                        },
+                        "static": {
+                            "_datastorename": "bincode"
+                        }
+                    },
+                    "webhookId": "1a3a45333e7c33"
+                },
+                {
+                    "name": "notify endpoint",
+                    "type": "notify",
+                    "url": "https://[buttonkit]/api/v1/send",
+                    "method": "POST",
+                    "parameters": {
+                        "dynamic": {
+                            "recipients": [
+                                {
+                                    "id": "tenants",
+                                    "type": "occupancy",
+                                    "answer": {}
+                                }
+                            ],
+                            "placeholders": [
+                                {
+                                    "id": "204b52b69e8da2",
+                                    "qid": "204b52b69e8da2",
+                                    "key": "value",
+                                    "type": "question"
+                                }
+                            ]
+                        },
+                        "static": {
+                            "email": {
+                                "subject": "",
+                                "body": ""
+                            },
+                            "sms": {
+                                "body": "new bin code has been set: [204b52b69e8da2]"
+                            },
+                            "message": {
+                                "subject": "bin code",
+                                "body": "a new bin code has been set: [204b52b69e8da2]"
+                            },
+                            "recipients": []
+                        }
+                    },
+                    "webhookId": "7b134e9db6174c"
+                }
+            ]
+        },
+        {
+            "buttonId": "10895efcb4856b",
+            "name": "bin code",
+            "description": "latest bin code",
+            "type": "action",
+            "questions": [
+                {
+                    "question": "bin code",
+                    "type": "datastoreitem",
+                    "values": {
+                        "storeId": "bincode",
+                        "schema": [
+                            {
+                                "id": "204b52b69e8da2",
+                                "path": "204b52b69e8da2",
+                                "alias": "current bin code",
+                                "default": ""
+                            }
+                        ],
+                        "filters": []
+                    },
+                    "validators": [],
+                    "compulsory": false,
+                    "questionId": "1c8bd88191f219",
+                    "number": 1
+                }
+            ],
+            "navigation": {
+                "id": "1c8bd88191f219",
+                "type": "node",
+                "parent": null,
+                "children": []
+            },
+            "webhooks": []
+        }
+    ]
+}
