@@ -1,5 +1,5 @@
 {
-    "packageId": "1c67d6426b7c36",
+    "packageId": "daa403b493936",
     "name": "",
     "description": "",
     "buttons": [
@@ -148,7 +148,7 @@
                         "filters": [],
                         "orderby": "pressed",
                         "sortby": "desc",
-                        "limit": "1"
+                        "limit": -1
                     },
                     "validators": [],
                     "compulsory": false,
